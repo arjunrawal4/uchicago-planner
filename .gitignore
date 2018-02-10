@@ -1,7 +1,8 @@
 	
 Github has a great boilerplate .gitignore
 # Byte-compiled / optimized / DLL files
-__pycache__/ *.py[cod]
+***/__pycache__/ *.py[cod]
+***/__pycache__
 # C extensions
 *.so
 # Distribution / packaging
