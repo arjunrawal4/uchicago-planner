@@ -13,7 +13,7 @@ import requests
 def get_soup(url):
 
 	re = requests.get(url)
-	html = re.text.encode('iso-8859-1')
+	html = re.text.encode()
 	soup = bs4.BeautifulSoup(html, 'lxml')
 
 	return soup
@@ -30,14 +30,46 @@ def crawl(start):
 
 	for link in links:
 		url = get_absoulte_url(link.get('href'))
-		print(url)
+		
+		soup1 = get_soup(url)
+
+		tags = soup.find_all('div', class_='courseblock main')
 
 
-def get_subsequence(tag):
 
-	sub = []
 
-	if tag
+
+def is_whitespace(tag):
+	'''
+	Does the tag represent whitespace?
+	'''
+	return isinstance(tag, bs4.element.NavigableString) and (tag.strip() == "")
+
+
+def find_sequence(tag):
+	'''
+	If tag is the header for a sequence, then
+	find the tags for the courses in the sequence.
+	'''
+	rv = []
+	sib_tag = tag.next_sibling
+	while is_subsequence(sib_tag) or is_whitespace(tag):
+	    if not is_whitespace(tag):
+	        rv.append(sib_tag)
+	    sib_tag = sib_tag.next_sibling
+	return rv
+
+	
+
+def is_subsequence(tag):
+    '''
+    Does the tag represent a subsequence?
+    '''
+    return isinstance(tag, bs4.element.Tag) and 'class' in tag.attrs \
+        and tag['class'] == ['courseblock', 'subsequence']
+
+
+
 
 
 
