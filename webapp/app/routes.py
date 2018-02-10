@@ -7,8 +7,9 @@ from sqlalchemy.orm import joinedload
 log = logging.getLogger("webapp")
 
 @app.route('/')
-@app.route('/templates/index')
 def index():
     users = db.session.query(User)
     log.info(users)
-    return render_template('index.html', users=users)
+    return render_template('view.html', users=users)
+
+
