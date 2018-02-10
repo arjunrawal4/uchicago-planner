@@ -47,4 +47,14 @@ header.masthead {
     header.masthead .device-container {
       max-width: 325px;
     }
+
+    .btn-primary {
+      background: none;
+      border: 2px solid white;
+    }
+
+    .btn-primary:hover, btn-primary: select{
+      background: grey;
+    }
+  
   }
